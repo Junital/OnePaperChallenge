@@ -26,6 +26,8 @@ y &= \text{f}\left( \sum_{i=1}^n w_i x_i + \sigma\left(\sum_{i=1}^n (w_i - w')x_
 &= \text{f}\left( \sum_{i=1}^n w_i x_i + \sigma\left(\sum_{i=1}^n w_i x_i - w'x_{sum} + b_1\right)+b_2\right)
 \end{aligned}$$
 
+根据证明，
+
 ## 结果
 
 相比于传统神经网络，通过使用相同的超参，IC网络能提升准确率和加速训练过程。
