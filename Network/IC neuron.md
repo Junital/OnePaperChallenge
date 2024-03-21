@@ -26,8 +26,14 @@ y &= \text{f}\left( \sum_{i=1}^n w_i x_i + \sigma\left(\sum_{i=1}^n (w_i - w')x_
 &= \text{f}\left( \sum_{i=1}^n w_i x_i + \sigma\left(\sum_{i=1}^n w_i x_i - w'x_{sum} + b_1\right)+b_2\right)
 \end{aligned}$$
 
-根据证明，
+根据证明，IC神经元可以表示整个超平面平行，提供更为灵活的决策边界。
+
+此外，还可以将IC神经元进行组装，组装成全连接结构、循环结构和卷积结构都是可以的。
+
+通过比较IC神经元和MP神经元的复杂度是差不多的。
 
 ## 结果
+
+![Fig2](./fig/IC%20Exp.png)
 
 相比于传统神经网络，通过使用相同的超参，IC网络能提升准确率和加速训练过程。
