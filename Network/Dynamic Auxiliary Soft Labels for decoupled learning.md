@@ -53,6 +53,57 @@ $$ L_\text{gt2a}(y_i, s_a) = -\sum_{j=1}^K y_i^j \log s_a^j$$
 
 $$ L_\text{a2c}(s_a, s_c) = \sum_{j=1}^K\tilde{s^j_a} \log \frac{\tilde{s^j_a}}{\tilde{s^j_c}}$$
 
+由于辅助网络提取原来模型每一层的特征映射，本文使用损失函数来监督特征提取网络和辅助网络：
+
+$$L_{\text{a2r}}(FA, F) = \sum_{j=1}^D \left \|  \frac{Tr(F_j)}{\left \| Tr(F_j)\right \|_2} - \frac{Tr(FA_j)}{\left \| Tr(FA_j)\right \|_2}\right \|_2. $$
+
+其中，$Tr(F) = \sum_{i=1}^{ch}\left | F^i \right |^p$，$ch$是特征映射的通道数。特征提取网络 + 分类器和辅助网络之间的损失函数即为：
+
+$$L_{\text{a2cr}}(s_a, s_c, FA, F) = L_\text{a2c}(s_a, s_c) + \beta L_\text{a2r}(FA, F).$$
+
+在特征学习阶段，整体的目标损失函数即为：
+
+$$L_{\text{RepL}} = L_\text{gt2c}(y_i, s_c) + L_\text{gt2a}(y_i, s_a) + L_{\text{a2cr}}(s_a, s_c, FA, F).$$
+
+在**分类器学习阶段**，使用了类别均衡采样的方法，使得每个类别被均衡地抽样，每个实例也从类别中均衡的被抽样。由于此阶段特征提取网络的系数被固定了，因此不需要进行特征级别的监督，即：
+
+$$L_{\text{a2cr}}(s_a, s_c) = L_\text{a2c}(s_a, s_c).$$
+
+此阶段损失函数即为：
+
+$$L_{\text{ClaL}} = L_\text{gt2c}(y_i, s_c) + L_\text{gt2a}(y_i, s_a) + L_{\text{a2cr}}(s_a, s_c).$$
+
 ![Fig1](./fig/DaSL.png)
 
+为了让辅助网络得到更加有效的中间层特征，本文使用了多尺度特征融合方法。本文设计了三种网络结构，分别为单路融合结构、双路融合结构和复杂双路融合结构。
+
+![Fig2](./fig/Auxiliary%20Network%20Fusion.png)
+
+**单路融合结构**只含有一条从底层特征到高层特征的路径。使用单路融合结构的辅助网络包括了两组卷积层$Conv_{L1}$和$Conv_{L2}$以及一个分类器。
+
+**双路融合结构**在单路融合结构的基础上，增加了一条自顶层特征到底层特征的路径。网络结构包括了三组卷积层$Conv_{L1}$、$Conv_{L2}$和$Conv_{L3}$以及一个分类器。、
+
+**复杂双路融合结构**相比于双路融合结构更加复杂，第二层使用如下公式进行连接：
+
+$$Conv_{L2}^i = Conv\left (w_{i, 1}^{C2} \cdot Conv_{L1}^i+ w_{i, 2}^{C2}\cdot \text{Resize}(Conv_{L2}^{i+1})\right )$$
+
+第三层用如下公式进行连接：
+
+$$Conv_{L3}^i = Conv\left (w_{i, 1}^{C3} \cdot Conv_{L1}^i+ w_{i, 2}^{C3}\cdot Conv_{L2}^i + w_{i, 3}^{C3}\cdot\text{Resize}(Conv_{L3}^{i-1})\right )$$
+
 同时，本文在特征学习中引入一个特征层面提取方法，并通过多尺度特征融合提升大致特征。
+
+## 实验部分
+
+### 主要结果
+
+DaLS表现优异，很多都是表现最佳或者次佳。
+
+### 消融实验
+
+- 双阶段学习确实能提升准确率。
+- 复杂双路融合结构能有更好的准确率。
+- 相比Label Smoothing和Online Label Smoothing，DaSL效果更好。
+- 损失函数比例超参$\beta$在150左右较好。
+- 使用分隔学习得到的准确率更好。
+- 混淆矩阵看出数据更加集中落在正确的区域，模型的决策边界更加明显。
