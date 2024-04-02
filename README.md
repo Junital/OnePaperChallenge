@@ -6,7 +6,7 @@ Here are some model structures:
 
 |Model|Structure|
 |---|---|
-|DaSL(Dynamic Auxiliary Soft Labels)|![DaSL](./1.%20Img/DaSL.png)|
-|$\text{TR}^2$|![TR2](./1.%20Img/TR2%20framework.png)|
-|Single-Stage Grasp(SSG)|![SSG](./1.%20Img/SSGfig1.png)|
-|AugRmixAT|![AugRmixAT](./1.%20Img/AugRmixAT.png)|
+|DaSL(Dynamic Auxiliary Soft Labels)|![DaSL](./Network/fig/DaSL.png)|
+|$\text{TR}^2$|![TR2](./Robot%20Vision/Fig/TR2%20framework.png)|
+|Single-Stage Grasp(SSG)|![SSG](./Robot%20Vision/Fig/SSGfig1.png)|
+|AugRmixAT|![AugRmixAT](./Generalization/fig/AugRmixAT.png)|
