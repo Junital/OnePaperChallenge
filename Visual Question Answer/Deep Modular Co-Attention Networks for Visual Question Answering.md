@@ -110,9 +110,29 @@ $$z = \text{LayerNorm}(W^T_x\tilde{x} + W^T_y \tilde{y})$$
 
 ## 实验结果
 
+![Fig11](./fig/MCAN%20Ablation%20Experiments.png)
+
+- SA(Y)-SGA(X,Y)的表现是最好的，不过似乎有些不公平，因为SA(Y)-SGA(X,Y)本来就多一个Attention，自然会存储更多信息。
+
+- 随着层数的增加，模型在层数为6的时候达到饱和，可以从训练中不稳定的梯度看出。Encoder-Decoder的结果比Stacking的效果要好。
+
+![Fig12](./fig/MCA%20Variants%20Depth%20Comparison.png)
+
+可以看出，SA(Y)-SGA(X,Y)在数数方面表现得非常好。
+
+![Fig13](./fig/MCAN%20Qualitative%20Analysis.png)
+
+说明了SA的有效性、GA的有效性和Encoder-Decoder比Stacking噪声更小。
+
+![Fig14](./fig/MCAN%20Typical%20Examples.png)
+
+缺点：对left、catcher这种词没办法进行attention。
+
 ## 个人感想
 
-借鉴了很多Transformer的思路，包括Attention、Encoder-Decoder和MCA输入输出大小一样这些，让整个MCAN成为一个Transformer的变体，无论是在深度上还是宽度上都有比较大的空间。
+借鉴了很多Transformer的思路，包括Attention、Encoder-Decoder和MCA输入输出大小一样这些，让整个MCAN成为一个Transformer的变体，无论是在深度上还是宽度上都有比较大的拓展空间。
+
+另外，Qualitative Analysis部分是比较新颖的，之前没有见过能这样可视化。
 
 ## 思路
 
