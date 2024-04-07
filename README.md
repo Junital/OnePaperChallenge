@@ -10,3 +10,4 @@ Here are some model structures:
 |$\text{TR}^2$|![TR2](./Robot%20Vision/Fig/TR2%20framework.png)|
 |Single-Stage Grasp(SSG)|![SSG](./Robot%20Vision/Fig/SSGfig1.png)|
 |AugRmixAT|![AugRmixAT](./Generalization/fig/AugRmixAT.png)|
+|deep Modular Co-Attention Network(MCAN)|![MCAN](./Visual%20Question%20Answer/fig/MCAN.png)|
