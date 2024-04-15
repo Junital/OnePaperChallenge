@@ -1,0 +1,3 @@
+# Counterfactual Samples Synthesizing and Training for Robust Visual Question Answering
+
+由于训练集和测试集分布有偏置，相关论文提出一种辅助仅问题模型来调整训练阶段。但是这种结构引起了视觉可解释性和问题敏感性的问题。本文就在此基础上基于反事实样本合成设计了一个训练方法，想解决上述两个问题。
