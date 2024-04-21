@@ -11,3 +11,4 @@ Here are some model structures:
 |Single-Stage Grasp(SSG)|![SSG](./Robot%20Vision/Fig/SSGfig1.png)|
 |AugRmixAT|![AugRmixAT](./Generalization/fig/AugRmixAT.png)|
 |deep Modular Co-Attention Network(MCAN)|![MCAN](./Visual%20Question%20Answer/fig/MCAN.png)|
+|Generative Bias(GenB)|![GenB](./Visual%20Question%20Answer/fig/GenB%20train%20bias%20model%20and%20discriminator.png)|
