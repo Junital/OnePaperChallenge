@@ -13,3 +13,4 @@ Here are some model structures:
 |deep Modular Co-Attention Network (MCAN)|![MCAN](./Visual%20Question%20Answer/fig/MCAN.png)|
 |Generative Bias (GenB)|![GenB](./Visual%20Question%20Answer/fig/GenB%20train%20bias%20model%20and%20discriminator.png)|
 |Visual Programming (visprog)|![Visprog](./Visual%20Question%20Answer/fig/Visprog.png)|
+|ViperGPT|![ViperGPT](./Visual%20Inference/fig/viperGPT.png)|
