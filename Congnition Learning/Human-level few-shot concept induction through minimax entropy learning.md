@@ -40,8 +40,27 @@ $$p(x) = \frac{1}{Z} \exp\left[-\sum_j\lambda_jH_j(x)\right]$$
 
 $$\underset{p}{\min}-\int p(x)\log p(x) \mathrm{d}x = \underset{p}{\min} \mathbf{KL}(p^\star, P)=\underset{p}{\max}\mathbb{E}_{p^\star}[\log p(x)]$$
 
-上述公式其实和最大似然学习是等价的。
+上述公式其实和最大似然学习是等价的。这一步是通过选择出滤波器$\{H_j(\cdot)\}$的优化集合实现的，从而在选择的滤波器的编码方案下最小化期望编码长度。除此之外，本文增加一组全局指示变量${z_j}$到优化中，最大化分布的$\log$似然，公式如下所示：
+
+$$\max_{\lambda, z}\mathbb{E}_{x_i}[\log p(x_i)]=\mathbb{E}_{x_i}\left [-\sum_j \lambda_j z_j H_j(x_i)-\log Z \right ]$$
+
+尽管如此，极大极小熵学习结构仍然有一点问题：传统的固定滤波器的结构并不能适应于不同的场景和案例。对此，本文设计了双层优化问题：内部优化计算出能恰好表述隐含概念的优化参数，外部就是刚刚的极大极小熵学习。因此在实例学习中，本文在一定限制下最大化$log$似然，如下面的完整公式所示：
+
+$$\begin{aligned}
+\max_{\lambda, z}\ \ \  \mathbb{E}_{x_i}[\log p(x_i)] &= \mathbb{E}_{x_i}\left [-\sum_j \lambda_j z_j H_j(x_i;\theta_j^\star)- \log Z\right ] \\
+\text{subject to}\ \ \ \ \ \ \ \ \ \ \ \  \theta_j^\star &= \arg \min \ell_j(\{x_i\}, \theta_j), \forall j
+\end{aligned}$$
+
+其中，$\theta_j^\star$代表在过滤器组$H_j(\cdot; \theta_j)$中最能捕捉隐含概念的优化参数。
 
 ## 任务测试
 
 本文使用了如下的测试任务：RPM、MNS和$\text{O}^3$，分别为形状归纳、数字归纳和数量归纳。
+
+相比于目前的Transformer模型和其他归纳推理和抽象推理模型，本文的极大极小熵模型表现非常好，在归纳方面有很大的提升，超过了大部分人类。同时通过消融实验验证了各个模块的有效性。
+
+## 个人感想
+
+- 自己确实第一次接触这种学习方法，没有能力提出创新和改进。
+- 目前确实基于神经网络的模型更像是在“记忆”，而不是推理。这并不是学习。
+- 不过我认为学习还是不仅仅需要推理，还需要纠偏，对于错误的答案要分析问题，从而可以学习到新的知识。
