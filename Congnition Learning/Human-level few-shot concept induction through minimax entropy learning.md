@@ -22,6 +22,26 @@
 
 ![Fig1](./fig/Minimax%20Entropy%20Learning.png)
 
+具体而言，对每个问题的上下文语境集合$C=\{x_i\}$，包含着物体为中心的表示，可以是两到三个简短序列或静态图像。本文的极大极小熵模型应该在物体为中心的表示空间中，学习到最能表示隐藏概念特征的分布$p(x)$。假如说，隐藏概念可以通过一系列响应方程$\{H_j(\cdot)\}$或滤波器捕捉，那么就需要满足下面的最大熵原则：
+
+$$\begin{aligned}
+\max_p &-\int p(x) \log p(x) \mathrm{d}x \\
+\text{subject to} &\underset{x\sim p(x)}{\mathbb{E}}[H_j(x)] = \mu_j^{\text{obs}}, \forall j\\
+&\int p(x)\mathrm{d}x=1
+\end{aligned}$$
+
+其中，$\mu_j^{\text{obs}}$代表在上下文中的平均滤波器响应。此优化可以接受一个分析性的解决方案，如下所示：
+
+$$p(x) = \frac{1}{Z} \exp\left[-\sum_j\lambda_jH_j(x)\right]$$
+
+其中，$Z=\int\exp [-\sum_j\lambda_jH_j(x)]\mathrm{d}x$，是标准化基。$\lambda_j$是优化拉格朗日乘数，可以通过上述最大似然学习得到。
+
+在最小熵学习阶段，本文在最大熵学习得到的结果的基础上最小化模型的熵。其等效于最小化受到隐藏概念限制的真实分布$p^*(x)$和本文刚得到的近似分布$p(x)$之间的KL散度：
+
+$$\underset{p}{\min}-\int p(x)\log p(x) \mathrm{d}x = \underset{p}{\min} \mathbf{KL}(p^\star, P)=\underset{p}{\max}\mathbb{E}_{p^\star}[\log p(x)]$$
+
+上述公式其实和最大似然学习是等价的。
+
 ## 任务测试
 
 本文使用了如下的测试任务：RPM、MNS和$\text{O}^3$，分别为形状归纳、数字归纳和数量归纳。
