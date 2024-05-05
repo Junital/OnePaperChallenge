@@ -16,3 +16,4 @@ Here are some model structures:
 |ViperGPT|![ViperGPT](./Visual%20Inference/fig/viperGPT.png)|
 |Minimax Entropy Learning|![minimax entropy](./Congnition%20Learning/fig/Minimax%20Entropy%20Learning.png)|
 |Neural-Symbolic Recursive Machine(NSR)|![NSR](./Congnition%20Learning/fig/deduction-abduction%20process.png)|
+|Part-level interactive scene reconstruction|![part-level](./Robot%20Perception/Fig/Part-level%20interactive%20secne%20reconstruction.png)|
