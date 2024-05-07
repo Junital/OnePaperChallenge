@@ -92,8 +92,37 @@ $$\mathcal{L}_{\text{MLS}} = \mathbb{E}_{(x_i, y_i) \in \mathcal{B}} \sum_{j=1}^
 
 **处理新任务的单独$\mathcal{L}_{ce}$**：最近有研究表明，输出分数梯度不平衡会导致新旧任务之间的决策边界很差。因此，本文将$\mathcal{L}_{ce} = \mathcal{L}_{ce, \text{new}} + \mathcal{L}_{ce, \text{buf}}$来避免严重梯度偏置。具体而言，基于缓存$\mathcal{M}$会在任务中和类别中展示更好的平衡性这一假设，$\mathcal{L}_{ce, \text{buf}}$一般在缓存批次$\mathcal{B}^\mathcal{M}$上进行计算。对到来的数据批次$\mathcal{B}^t$，损失函数会根据$\mathcal{C}^t$输出分数计算损失函数：
 
-$$\mathcal{L}_{ce, \text{new}}(\hat{y}, y) = \sum_{c \in \mathcal{C}^t} y^c \log$$
+$$\mathcal{L}_{ce, \text{new}}(\hat{y}, y) = \sum_{c \in \mathcal{C}^t} y^c \log\left ( \frac{\exp(\hat{y}^c)}{\sum_{s\in \mathcal{C}^t}\exp(\hat{y}^s)}\right )$$
+
+### 保留自提取
+
+本文通过任务级测试对于每个专家$E_i$的准确率。本文假定理想情况下网络会对每个任务选择最佳的专家。MAX代表最高准确率，MOE代表每次多专家共同预测准确率。
+
+![Fig3](./fig/task-wise%20expert%20accuracy.png)
+
+前六行发现，不同任务适合的专家不一样。并且多个专家共同决策会比单一选择专家决策要好。这证明了多专家的重要性。但是MOE需要额外的计算和存储消耗，本文引用的$a_w$、$p_\psi$和$g_\phi$不够好。因此，本文打算将不同专家的技能迁移到最后一个专家$E_4$上。
+
+因此本文使用了保留自提取（RSD）的方法，RSD将潜在序列专家作为老师、将最大的专家$F$作为学生。通过计算标准化后的$\hat{h}_i ,i<n$和标准化后的$h_n$的L2距离，使其最小化。
+
+$$\begin{aligned}
+\mathcal{L}_\text{RSD} &= \mathbb{E}_{(x_i, y_i) \in \mathcal{B}}\sum_{i=1}^{n-1}\left \| \hat{h}_i' - h_n' \right \|_2,\\
+h' &= \text{normalize}(h) = h/\left \| h\right \|_2.
+\end{aligned}$$
+
+通过实验下六行的结果来看，$E_4$确实成为了最强的专家。对MOE和MAX都有提升。其次，在初次接收挑战的时候，准确率也不低。
+
+### 整体架构
+
+$$\mathcal{L}_\text{MOSE} = \mathcal{L}_\text{MLS} + \mathcal{L}_\text{RSD}$$
 
 ## 实验结果
 
 MOSE在学习新样本和保留旧样本表现出非常好的效果。提升了OCL SOTA的准确率。
+
+消除了欠拟合-过拟合困境。消融实验证明了每个模块的重要性。专家数量为4较好。
+
+## 个人感想
+
+这篇论文的特点不仅仅在解决问题，而在于提出问题。通过做一些前置实验和测试，找出目前模型的问题所在，这是首先要学习的。
+
+然后多层映射、知识蒸馏这些都是前人做好的，但是如何合适的运用这篇论文也给出了依据，最后一步步推导到达了完美的结果，可见境界之高。
