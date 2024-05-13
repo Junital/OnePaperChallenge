@@ -18,3 +18,4 @@ Here are some model structures:
 |Neural-Symbolic Recursive Machine(NSR)|![NSR](./Congnition%20Learning/fig/deduction-abduction%20process.png)|
 |Part-level interactive scene reconstruction|![part-level](./Robot%20Perception/Fig/Part-level%20interactive%20secne%20reconstruction.png)|
 |Robot Parkour Learning|![Parkour](./Robot%20Locomotion/fig/parkour%20two-stage%20RL%20training.png)|
+|Multi-level Online Sequential Experts (MOSE)|![MOSE](./Congnition%20Learning/fig/MOSE.png)|
