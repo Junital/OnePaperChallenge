@@ -1,0 +1,7 @@
+# METAGPT: META PROGRAMMING FOR A MULTI-AGENT COLLABORATIVE FRAMEWORK
+
+## 背景
+
+元编程框架：
+
+![Fig1](./fig/MetaGPT.png)
