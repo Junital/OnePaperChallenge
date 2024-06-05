@@ -82,7 +82,7 @@ $$
 \end{aligned}
 $$
 
-其中，$p(T|x, y)$代表给定$(x, y)$下$T$的厚颜分布，可以如下表示：
+其中，$p(T|x, y)$代表给定$(x, y)$下$T$的后延分布，可以如下表示：
 
 $$p(T|x,y) = \frac{p(T,y|x;\Theta}{\sum_{T'}p(T',y|x;\Theta)} = \left\{\begin{matrix}
  0, & \text{if\ \ } T\notin Q\\
