@@ -19,3 +19,6 @@ Here are some model structures:
 |Part-level interactive scene reconstruction|![part-level](./Robot%20Perception/Fig/Part-level%20interactive%20secne%20reconstruction.png)|
 |Robot Parkour Learning|![Parkour](./Robot%20Locomotion/fig/parkour%20two-stage%20RL%20training.png)|
 |Multi-level Online Sequential Experts (MOSE)|![MOSE](./Congnition%20Learning/fig/MOSE.png)|
+|Post Tuning Hash (PTH)|![PTH](./Algorithm/fig/post%20tuning%20hash.png)|
+|mPLUG-Owl2|![mPLUG-Owl2](./Big%20Model/fig/mPLUG-Owl2.png)|
+|EmbodiedScan|![EmbodiedScan](./Robot%20Perception/Fig/EmbodiedScan.png)|
