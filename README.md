@@ -6,6 +6,7 @@ Here are some model structures:
 
 |Model|Structure|
 |---|---|
+|LLaVA-1.5|![LLaVA-1.5](./Fine-tuning/fig/LLaVA1.5.png)|
 |DaSL (Dynamic Auxiliary Soft Labels)|![DaSL](./Neural%20Network/fig/DaSL.png)|
 |$\text{TR}^2$|![TR2](./Robot%20Perception/Fig/TR2%20framework.png)|
 |Single-Stage Grasp (SSG)|![SSG](./Robot%20Perception/Fig/SSGfig1.png)|
