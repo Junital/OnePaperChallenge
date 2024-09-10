@@ -1,0 +1,3 @@
+# Multimodal Chain-of-Thought Reasoning in Language Models
+
+LLM通过使用思维链提示，通过生成中间推理链来推理得到答案，展示出强大的推理能力。但目前的推理研究仅仅关注于语言模态。本文提出了多模态思维链，将语言和视觉融合进一个双阶段框架，逐步进行推理生成和答案推理。在多模态CoT的加持下，模型只需要1B的参数就可以在ScienceQA benchmark上取得SOTA效果。通过研究显示，多模态CoT在消除幻觉现象和提升收敛速度上有较大优势。
