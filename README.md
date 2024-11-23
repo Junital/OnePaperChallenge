@@ -6,6 +6,8 @@ Here are some model structures:
 
 |Model|Structure|
 |---|---|
+|MP5|![MP5](./Robot%20Planning/fig/MP5.png)|
+|GUIDE|![GUIDE](./Generative%20Model/fig/GUIDE.png)|
 |LLaVA-1.5|![LLaVA-1.5](./Fine-tuning/fig/LLaVA1.5.png)|
 |DaSL (Dynamic Auxiliary Soft Labels)|![DaSL](./Neural%20Network/fig/DaSL.png)|
 |$\text{TR}^2$|![TR2](./Robot%20Perception/Fig/TR2%20framework.png)|
