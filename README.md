@@ -6,6 +6,8 @@ Here are some model structures:
 
 |Model|Structure|
 |---|---|
+|Open-RAG|![Open-RAG](./Big%20Model/fig/Open-RAG.png)|
+|Self-RAG|![Self-RAG](./Big%20Model/fig/Self-RAG.png)|
 |MP5|![MP5](./Robot%20Planning/fig/MP5.png)|
 |GUIDE|![GUIDE](./Generative%20Model/fig/GUIDE.png)|
 |LLaVA-1.5|![LLaVA-1.5](./Fine-tuning/fig/LLaVA1.5.png)|
